@@ -13,6 +13,12 @@ import {
     @Column()
     name: string
 
+    @Column({ nullable: false, unique: true })
+    email: string
+
+    @Column({ nullable: false})
+    password: number
+
     @OneToMany((type) => Photo, (photo) => photo.user)
     photos: Photo[] 
   }
