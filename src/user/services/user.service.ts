@@ -29,6 +29,11 @@ export class UserService {
       }
 
 
+    async findOne(email: string){
+      return this.feedPostRepository.findOne({where:{email}});
+  }
+
+
     updatePost(id: number, userEntity: UserEntity): Observable<UpdateResult> {
         try {
           return from(this.feedPostRepository.update(id, userEntity));//there's another way of doing it
@@ -72,10 +77,10 @@ export class UserService {
       }
 
       
-    async getSingleUser (){
+    async getSingleUser ():Promise<any>{
       try {
         return await this.feedPostRepository.createQueryBuilder('user')
-        .where('user.name=:name',{name:'Saif ur Rehman'}).getMany()
+        .where('user.name=:name',{name:'Ahsan'}).getOne()
           } catch (error) {
         console.log(error)
           }
